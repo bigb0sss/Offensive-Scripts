@@ -32,6 +32,9 @@ dcLookup() {
 	dc=$(nslookup -type=srv _ldap._tcp.dc._msdcs.$f $d)
 	echo $dc | sed 's/ /\n/g' | grep $f | grep -v msdcs | sed 's/.$//' > dc_hostname.txt &&
 
+	dcCount=$(wc -l dc_hostname.txt | awk '{print $1}')
+	echo "[INFO]" $dcCount "DC Found!" &&
+
 	echo "[INFO] Generating dc_ip.txt..." &&
 	while read i; do host $i; done < dc_hostname.txt >> tmp && cat tmp | cut -d " " -f 4 | sort -u > dc_ip.txt && rm tmp &&
 
