@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# When I want to conver a username from fist.last to flast
+# When I want to convert a username from fist.last to flast
 
 import sys
 
